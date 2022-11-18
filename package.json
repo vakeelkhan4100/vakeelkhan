@@ -1,0 +1,27 @@
+{
+  "name": "vakeelkhan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vakeelkhan4100/vakeelkhan.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vakeelkhan4100/vakeelkhan/issues"
+  },
+  "homepage": "https://github.com/vakeelkhan4100/vakeelkhan#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "nodemon": "^2.0.20"
+  }
+}
