@@ -1,5 +1,5 @@
 import { create } from "../controllers/category.controller.js";
-import  Express  from "express";
+import Express from "express";
 const category = Express.Router();
-category.route("/create").post(create)
+category.route("/category/create").post(create)
 export default category
