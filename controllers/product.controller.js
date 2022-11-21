@@ -1,6 +1,6 @@
 import Product from "../moduls/product.modul.js";
 export const create = async (req, res) => {
-    // try {
+    try {
     var allimages = [];
     req.files.forEach(image => {
         var imagetype = ''
@@ -32,13 +32,13 @@ export const create = async (req, res) => {
             data: {}
         })
     }
-    // } catch (error) {
-    //     res.send({
-    //         status: false,
-    //         msg: "something wrong with request .",
-    //         data: {}
-    //     }) 
-    // }
+    } catch (error) {
+        res.send({
+            status: false,
+            msg: "something wrong with request .",
+            data: {}
+        }) 
+    }
 }
 export const getall = async (req, res) => {
     const data = await Product.find({ status: "Active", }).sort({ 'id': -1 })
