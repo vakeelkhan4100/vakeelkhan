@@ -106,7 +106,7 @@ export const login = async(req,res) =>{
        res.send({
           status:true,
           msg:"update successfully.",
-          data:{}
+          data:data
        })
     }else{
        res.send({
@@ -132,12 +132,12 @@ export const login = async(req,res) =>{
        res.send({
           status:true,
           msg:"Deleted successfully.",
-          data:{}
+          data:data
        })
     }else{
        res.send({
           status:false,
-          msg:"data found with given id",
+          msg:"notnot",
           data:{}
        })
     }

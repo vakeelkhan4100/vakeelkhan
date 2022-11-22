@@ -10,12 +10,12 @@ const SubCategoryShema = new mongoose.Schema({
         enum:["Active","Deactive"],
         default:"Active"
     },
-    // cateId:{
-    //     type: mongoose.Schema.Types.ObjectId, ref: 'categories' 
-    // },
-    // createdBy:{
-    //     type: mongoose.Schema.Types.ObjectId, ref: 'users' 
-    // },
+    cateId:{
+        type: mongoose.Schema.Types.ObjectId, ref: 'categories' 
+    },
+    createdBy:{
+        type: mongoose.Schema.Types.ObjectId, ref: 'users' 
+    },
     createdAt: { type: Date, default: Date.now },
 	updatedAt: { type: Date, default: Date.now },
 })

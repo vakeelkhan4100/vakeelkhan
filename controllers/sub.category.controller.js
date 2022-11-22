@@ -24,7 +24,7 @@ export const create = async (req, res) => {
 
 export const GetAll = async(req,res) =>{
    try{
-   const data = await SubCategory.find({status:"Active"})//.populate("cateId").populate("createdBy");
+   const data = await SubCategory.find({status:"Active"}).populate("cateId").populate("createdBy");
    if(data.length > 0){
       res.send({
          status:true,

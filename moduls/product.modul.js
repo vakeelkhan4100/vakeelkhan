@@ -9,9 +9,12 @@ const ProductSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
-    // createdBy:{
-    //     type: mongoose.Schema.Types.ObjectId, ref: 'users' 
-    // },
+    createdBy:{
+        type: mongoose.Schema.Types.ObjectId, ref: 'users' 
+    },
+    subcatId:{
+        type:mongoose.Schema.Types.ObjectId, ref:'subcategories'
+    },
     is_popular:{
         type:Boolean,
         default:0
