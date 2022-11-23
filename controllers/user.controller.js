@@ -1,6 +1,7 @@
 import user from "../moduls/user.modul.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import nodemailer from "nodemailer"
 export const signup = async (req,res)=>{
      try {
         const isemailexits = await user.findOne({email:req.body.email})
@@ -227,3 +228,87 @@ export const login = async(req,res) =>{
        });return;
     }
  }
+ 
+             
+       
+ export const mailsend = async (req, res) => {
+   // try {
+       var otp = Math.floor(1000 + Math.random() * 9000)
+       let tranpoter = nodemailer.createTransport({
+           host:"smtp.gmail.com",
+           port:587,
+           secure: false,
+           requireTLS: true,
+           auth: {
+               user:"vakeelkhan4100@gmail.com",
+               pass: "tiwxkupnrgunbxbk"
+           }
+       })
+       let mailoption = {
+           from:"vakeelkhan4100@gmail.com",
+           to: req.body.email,
+           subject: "Verification OTP for hello.food.com",
+           html: "<p>Your verification OTP is:" + otp + "</ap>"
+       }
+       tranpoter.sendMail(mailoption, function (err, info) {
+           if (err) {
+               console.log("ERROR----", err);
+           } else {
+                console.log("INFO---", info.response);
+           }
+       })
+      //  console.log(otp)
+       req.body.otp = otp
+       const emailUpdate = await user.findOneAndUpdate({ email:req.body.email }, req.body)
+       emailUpdate.otp = req.body.otp
+       if (emailUpdate) {
+           res.send({
+               status: true,
+               msg: "otp send",
+               data: emailUpdate
+           })
+       } else {
+           res.send({
+               status: false,
+               msg: "email wrong with request check out",
+               data: {}
+           })
+       }
+   // } catch (err) {
+   //     res.send({
+   //         status: false,
+   //         msg: "same data misteck and server ERROR with REQUESTE",
+   //         data: err
+   //     })
+   // }
+}
+export const Forgetpass = async (req, res) => {
+   try {
+       const compareEmail = await user.findOne({ email: req.body.email, otp: req.body.otp })
+       if (compareEmail) {
+           //console.log(req.body.password);
+           var pass = await bcrypt.hash(req.body.password, 10)
+           //console.log(pass);
+           await user.findByIdAndUpdate({ _id: compareEmail.id }, req.body)
+           compareEmail.password = pass
+           res.send({
+               status: true,
+               msg: "password forget and new password add",
+               data: compareEmail
+           })
+       } else {
+           res.send({
+               status: false,
+               msg: "email or otp incorte checkout ",
+               data: {}
+           })
+       }
+   } catch (err) {
+       res.send({
+           status: false,
+           msg: "same data misteck and server ERROR with REQUESTE",
+           data: err
+       })
+   }
+} 
+ 

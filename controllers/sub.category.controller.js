@@ -23,7 +23,7 @@ export const create = async (req, res) => {
 }
 
 export const GetAll = async(req,res) =>{
-   try{
+   // try{
    const data = await SubCategory.find({status:"Active"}).populate("cateId").populate("createdBy");
    if(data.length > 0){
       res.send({
@@ -38,12 +38,12 @@ export const GetAll = async(req,res) =>{
          data:[]
       })
    }
-}catch(err){
-   res.send({
-      status:false,
-      msg:"SOmething wrong with request.",
-      data:err
-   })
-}
+// }catch(err){
+//    res.send({
+//       status:false,
+//       msg:"SOmething wrong with request.",
+//       data:err
+//    })
+// }
 }
 
