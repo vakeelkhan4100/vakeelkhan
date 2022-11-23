@@ -36,27 +36,27 @@ export const create = async (req, res) => {
 }
 
 export const getalldata = async (req, res) => {
-//  try {
-  const  data = await catuser.find({status:"Active"})
-  if(data.length > 0){
+  try {
+    const data = await catuser.find({ status: "Active" })
+    if (data.length > 0) {
+      res.send({
+        status: true,
+        msg: "data fetch success",
+        data: data
+      })
+    }
+    else {
+      res.send({
+        status: false,
+        msg: "data not fount .",
+        data: []
+      })
+    }
+  } catch (error) {
     res.send({
-      status:true,
-      msg:"data fetch success",
-      data:data
+      status: false,
+      msg: "internal error",
+      data: {}
     })
   }
-  else{
-    res.send({
-      status:false,
-      msg:"data not fount .",
-      data:[]
-    })
-  }
-//  } catch (error) {
-//   res.send({
-//     status: false,
-//     msg: "internal error",
-//     data: {}
-//   })
-// }
 }

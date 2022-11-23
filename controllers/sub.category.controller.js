@@ -1,13 +1,12 @@
 import SubCategory from "../moduls/sub.category.modul.js";
-
 export const create = async (req, res) => {
    try {
-      const isCateExist = await SubCategory.findOne({name:req.body.name})
-      if(isCateExist){
+      const isCateExist = await SubCategory.findOne({ name: req.body.name })
+      if (isCateExist) {
          res.send({
-            status:false,
-            msg:"Sub Category already exist.",
-            data:{}
+            status: false,
+            msg: "Sub Category already exist.",
+            data: {}
          })
          return;
       }
@@ -22,28 +21,28 @@ export const create = async (req, res) => {
    }
 }
 
-export const GetAll = async(req,res) =>{
-   // try{
-   const data = await SubCategory.find({status:"Active"}).populate("cateId").populate("createdBy");
-   if(data.length > 0){
+export const GetAll = async (req, res) => {
+   try {
+      const data = await SubCategory.find({ status: "Active" }).populate("cateId").populate("createdBy");
+      if (data.length > 0) {
+         res.send({
+            status: true,
+            msg: "Data fetch successsfiully.",
+            data: data
+         })
+      } else {
+         res.send({
+            status: false,
+            msg: "Sub Categories not found.",
+            data: []
+         })
+      }
+   } catch (err) {
       res.send({
-         status:true,
-         msg:"Data fetch successsfiully.",
-         data:data
-      })
-   }else{
-      res.send({
-         status:false,
-         msg:"Sub Categories not found.",
-         data:[]
+         status: false,
+         msg: "SOmething wrong with request.",
+         data: err
       })
    }
-// }catch(err){
-//    res.send({
-//       status:false,
-//       msg:"SOmething wrong with request.",
-//       data:err
-//    })
-// }
 }
 

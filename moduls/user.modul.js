@@ -30,24 +30,24 @@ const userschema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    token:{
+    token: {
         type: String,
         required: false
     },
-    otp:{
+    otp: {
         type: Number,
         required: false
     },
-    email_verified:{
-        type:Boolean,
-        required:false,
-        default:false
+    email_verified: {
+        type: Boolean,
+        required: false,
+        default: false
     },
-   number_verified:{
-        type:Boolean,
-        required:false,
-        default:false
+    number_verified: {
+        type: Boolean,
+        required: false,
+        default: false
     }
 })
-const  user = mongoose.model("users",userschema)
+const user = mongoose.model("users", userschema)
 export default user
