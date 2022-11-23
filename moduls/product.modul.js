@@ -17,7 +17,8 @@ const ProductSchema = new mongoose.Schema({
     },
     is_popular: {
         type: Boolean,
-        default: 0
+        enum:[true,false],
+        default:false
     },
     description: {
         type: String,

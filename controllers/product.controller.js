@@ -1,4 +1,5 @@
 import Product from "../moduls/product.modul.js";
+import product from "../routes/product.route.js";
 export const create = async (req, res) => {
     try {
         var allimages = [];
@@ -17,6 +18,14 @@ export const create = async (req, res) => {
             allimages.push(imagedata)
         });
         req.body.images = allimages
+        const exits = await Product.findOne({name:req.body.name})
+        if(exits){
+            res.send({
+                status:false,
+                msg:"name is already exits",
+                data:{}
+            })
+        }else{
         const createpro = await Product.create(req.body)
         if (createpro) {
             res.send({
@@ -32,6 +41,7 @@ export const create = async (req, res) => {
                 data: {}
             })
         }
+    }
     } catch (error) {
         res.send({
             status: false,
@@ -41,7 +51,7 @@ export const create = async (req, res) => {
     }
 }
 export const getall = async (req, res) => {
-    const data = await Product.find({ status: "Active", }).sort({ 'id': -1 })
+    const data = await Product.find({is_popular:true}).sort({ 'id': -1 })
     if (data.length > 0) {
         res.send({
             status: true,
