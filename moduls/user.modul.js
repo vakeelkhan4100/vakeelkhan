@@ -30,7 +30,7 @@ const userschema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    toke:{
+    token:{
         type: String,
         required: false
     },

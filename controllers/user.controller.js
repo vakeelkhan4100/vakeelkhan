@@ -19,19 +19,22 @@ export const signup = async (req,res)=>{
                 data:{}
             })
         }else{
-            var otp = Math.floor(1000 + Math.random() * 9000);
+            var otp = Math.floor (1000 + Math.random() * 9000);
             req.body.otp =otp
             var passhash = await bcrypt.hash(req.body.password,10)
             req.body.password = passhash
-            const create = await user.create(req.body)
+            var create = await user.create(req.body)
             if(create){
-                create.token = await jwt.sign({time:Date(),reateId:create.id},"deshwali")
+               
+                create.token =await jwt.sign({time:Date(),create_id:create.id},"vakeel")
+                 console.log(create.token);
                 res.send({
                     status:true,
                     msg:"signup successfully",
                     data:create
                 })
             }
+
             else{
                 res.send({
                     status:false,
@@ -42,7 +45,7 @@ export const signup = async (req,res)=>{
         }
      } catch (err) {
         res.send({
-            status:true,
+            status:false,
             msg:"something wrong with request .",
             data:{}
         })
