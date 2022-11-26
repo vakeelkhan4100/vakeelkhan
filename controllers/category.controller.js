@@ -60,3 +60,28 @@ export const getalldata = async (req, res) => {
     })
   }
 }
+
+export const GetDataByAgrigate = async (req, res) => {
+  const data = await catuser.aggregate([
+    {
+      $match: {
+        status: "Active"
+      },
+    },
+    {
+      "$lookup": {
+        "from": "subcategories",
+        "localField": "_id",
+        "foreignField": "cateId",
+        "as": "subcategories"
+      }
+    },
+    {
+      "$unwind": {
+        path: "$subcategories",
+        preserveNullAndEmptyArrays: true
+      }
+    }
+  ])
+  res.send(data)
+}

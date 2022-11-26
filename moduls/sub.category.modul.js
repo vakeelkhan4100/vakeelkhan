@@ -9,8 +9,8 @@ const SubCategoryShema = new mongoose.Schema({
         enum: ["Active", "Deactive"],
         default: "Active"
     },
-    cateId: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'categories'
+    productID: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'product'
     },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId, ref: 'users'

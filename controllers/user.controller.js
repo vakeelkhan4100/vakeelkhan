@@ -77,7 +77,7 @@ export const login = async (req, res) => {
    }
 }
 export const getAllUsers = async (req, res) => {
-   //  var where  = {}
+   //  var where  = {} 
    //  if(req.query.email){
    //    where.email = req.query.email
    //  }
