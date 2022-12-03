@@ -1,4 +1,4 @@
-import express from "express";
+import Express from "express";
 import category from "./routes/category.route.js";
 import connectDB from "./config/db.js";
 import product from "./routes/product.route.js";
@@ -8,8 +8,8 @@ import user from "./routes/user.route.js"
 // import comment from "./routes/comment.route.js";
 // import share from "./routes/share.route.js";
 // import  {like}  from "./routes/like.route.js";
-const app = express();
-app.use(express.json());
+const app = Express();
+app.use(Express.json());
 connectDB();
 // import { createServer } from "http";
 // import { Server } from "socket.io";
