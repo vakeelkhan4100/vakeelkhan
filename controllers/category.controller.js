@@ -65,7 +65,7 @@ export const GetDataByAgrigate = async (req, res) => {
   const data = await catuser.aggregate([
     {
       $match: {
-        status: "Active"
+        name: {$regex: req.query.search}
       },
     },
     {

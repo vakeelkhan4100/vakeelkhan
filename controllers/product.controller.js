@@ -53,7 +53,7 @@ export const create = async (req, res) => {
  
 export const get_data =async (req,res)=>{
    try {
-        const data = await Product.find({ status: "Active" }).sort({'id':-1}).populate("subcatId")
+        const data = await Product.find({ status: "Active" }).populate("subcatId").sort({'id':-1})
         if (data) {
             res.send({
                 status: true,
@@ -107,28 +107,15 @@ export const is_best = async (req, res) => {
     }
 }
 
-
 export const search = async (req, res) => {
-    // var where = {}
-    // if(req.body.name){
-    //    where.name= req.body.name
-    // }
-
-    const find = await Product.findOne({ name: req.body.name })
-    if (find) {
-        res.send({
-            status: true,
-            msg: "data find succes",
-            data: find
-
-        })
-
-    }
-    else {
-        res.send({
-            status: false,
-            msg: "product is not found",
-            data: {}
-        })
-    }
-} 
+    const data = await Product.find(
+        {
+            "$or": [
+                { "name": { $regex: req.params.key } },
+                { "status": { $regex: req.params.key } },
+            ]
+        }
+    )
+    res.send(data)
+    
+}

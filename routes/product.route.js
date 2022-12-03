@@ -6,7 +6,7 @@ product.route("/product/create").post(imageUpload.array("product_upload", 10), c
 product.route("/product/get_data").get(get_data)
 product.route("/product/is_popular").get(is_popular)
 product.route("/product/is_best").get(is_best)
-product.route("/product/search").post(search)
+product.route("/product/search/:key").get(search)
 
 
 
