@@ -8,7 +8,7 @@ import user from "./routes/user.route.js"
 // import comment from "./routes/comment.route.js";
 // import share from "./routes/share.route.js";
 // import  {like}  from "./routes/like.route.js";
-// const app = express();
+const app = express();
 app.use(express.json());
 connectDB();
 // import { createServer } from "http";
