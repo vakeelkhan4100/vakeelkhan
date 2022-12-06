@@ -280,31 +280,34 @@ export const mailsend = async (req, res) => {
    }
 }
 export const Forgetpass = async (req, res) => {
-   try {
-      const compareEmail = await user.findOne({ email: req.body.email, otp: req.body.otp })
-      if (compareEmail) {
-         //console.log(req.body.password);
-         var pass = await bcrypt.hash(req.body.password, 10)
-         //console.log(pass);
-         await user.findByIdAndUpdate({ _id: compareEmail.id }, req.body)
-         compareEmail.password = pass
-         res.send({
-            status: true,
-            msg: "password forget and new password add",
-            data: compareEmail
-         })
-      } else {
-         res.send({
-            status: false,
-            msg: "email or otp incorte checkout ",
-            data: {}
-         })
-      }
-   } catch (err) {
-      res.send({
-         status: false,
-         msg: "same data misteck and server ERROR with REQUESTE",
-         data: err
-      })
-   }
+   res.send("haah")
+//    // try {
+//       const compareEmail = await user.findOne({ email: req.body.email, otp: req.body.otp })
+//       console.log("dfjhgsdf",compareEmail);
+//       if (compareEmail) {
+//          console.log(req.body.password);
+//          var pass = req.body.password //await bcrypt.hash(req.body.password, 10)
+//          req.body.password= pass
+//          console.log(pass);
+//          await user.findByIdAndUpdate({ _id: compareEmail.id }, pass)
+//          compareEmail.password = pass
+//          res.send({
+//             status: true,
+//             msg: "password forget and new password add",
+//             data: compareEmail
+//          })
+//       } else {
+//          res.send({
+//             status: false,
+//             msg: "email or otp incorte checkout ",
+//             data: {}
+//          })
+//       }
+//    // } catch (err) {
+//    //    res.send({
+//    //       status: false,
+//    //       msg: "same data misteck and server ERROR with REQUESTE",
+//    //       data: err
+//    //    })
+//    // }
 }
